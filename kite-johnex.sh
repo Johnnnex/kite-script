@@ -91,7 +91,12 @@ SCREEN_NAME="kite-johnex"
 screen -dmS "$SCREEN_NAME" bash -c "
     echo -e '${BLUE}Screen session started: $SCREEN_NAME${RESET}'
     
+    echo -e '${GREEN}Running npm install...${RESET}'
+
+    npm i
+
     echo -e '${GREEN}Running npm run dev...${RESET}'
+
     npm run dev
     
     # Keep screen session open
