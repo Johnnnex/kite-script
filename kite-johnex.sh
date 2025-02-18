@@ -84,13 +84,17 @@ if [ -f "config.json" ]; then
 else
     # Prompt for wallet address
     read -p "$(echo -e "${BLUE}Enter your wallet address: ${RESET}")" WALLET
+    
+    # Create a new config.json file with the wallet address
+    echo -e "{\"address\":\"$WALLET\"}" > config.json
+    echo -e "${GREEN}Wallet address saved to config.json.${RESET}"
 fi
 
 # Create a screen session called kite-johnex and run npm run dev
 SCREEN_NAME="kite-johnex"
 screen -dmS "$SCREEN_NAME" bash -c "
     echo -e '${BLUE}Screen session started: $SCREEN_NAME${RESET}'
-    
+
     echo -e '${GREEN}Running npm install...${RESET}'
 
     npm i
@@ -98,7 +102,7 @@ screen -dmS "$SCREEN_NAME" bash -c "
     echo -e '${GREEN}Running npm run dev...${RESET}'
 
     npm run dev
-    
+
     # Keep screen session open
     exec bash
 "
